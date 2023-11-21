@@ -58,36 +58,87 @@
         </div>
     </header>
 
+    <!-- modal start -->
+    <!-- You can open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_4.showModal()">open modal</button> -->
+<dialog id="detailsModal" class="modal">
+  <div  class="modal-box w-11/12 max-w-5xl">
+    <div  class="flex justify-center mt-10">
+
+            <div id="modalData" class=" rounded-md bg-gray-800 shadow-xl">
+                <div class="md:flex px-4 leading-none max-w-4xl">
+                    <div class="flex-none ">
+                        <img src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"
+                            alt="pic"
+                            class="h-72 w-56 rounded-md shadow-2xl transform -translate-y-4 border-4 border-gray-300 " />
+                    </div>
+
+                    <div class="flex-col text-gray-300 px-4">
+
+                        <p class="pt-4 text-2xl font-bold"><span id="title">Guardians of the Galaxy Vol. 2</span> <span id="year">2017</span></p>
+                        <hr class="hr-text" data-content="">
+                        <div class="text-md flex justify-between my-2">
+                            <span class="font-bold"><span id="runtime">2h 2min</span> | <span id="genre">Crime, Drama, Thriller</span></span>
+                            <span class="font-bold"></span>
+                        </div>
+                        <p id="plot" class="hidden md:block my-4 text-sm text-left">The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's encounter with his father, the ambitious celestial being Ego.</p>
+
+                        <p id="rating" class="flex text-md my-2">
+                            Rating: 9.0
+                        </p>
+
+                        <div class="text-xs">
+                            <button type="button"
+                                class="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline">TRAILER</button>
+
+                            <button type="button"
+                                class="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline">IMDB</button>
+
+                            <button type="button"
+                                class="border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 transition duration-500 ease select-none hover:bg-gray-900 focus:outline-none focus:shadow-outline">AMAZON</button>
+                        </div>
+                        
+
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    <div class="modal-action w-fit mx-auto">
+      <form method="dialog">
+        <!-- if there is a button, it will close the modal -->
+        <button class="btn">Close</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+    <!-- modal end -->
     <div class="w-11/12 mx-auto flex flex-col justify-center px-5 py-2 lg:px-auto lg:pt-12">
         <div class="search-box flex items-center justify-center gap-5 mb-6">
             <input id="searchInput" type="text" placeholder="Search here"
                 class="input input-bordered input-primary w-full max-w-xs" />
-            <button id="searchbtn" class="btn btn-primary btn-xm">Search</button>
+
         </div>
         <div class="text-2xl text-center font-bold border-b-2 w-fit mx-auto pb-1">Movies</div>
 
-        <p id="errorMessage" class="text-red-600 text-center mt-2 hidden">Something went wrong. Please try after some time!</p>
+        <p id="errorMessage" class="text-red-600 text-center mt-2 hidden">Something went wrong. Please try after some
+            time!</p>
         <div id="movies_wrapper" class=" grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 mt-4">
 
 
 
-            <div>
-                <div class="card w-48 bg-base-100 shadow-xl cursor-pointer hover:scale-95 transition duration-500">
-                    <figure class=""><img
-                            src="https://m.media-amazon.com/images/M/MV5BNjM0NTc0NzItM2FlYS00YzEwLWE0YmUtNTA2ZWIzODc2OTgxXkEyXkFqcGdeQXVyNTgwNzIyNzg@._V1_SX300.jpg"
-                            alt="movie" /></figure>
-                    <div class="card-body my-4">
-                        <h2 class="card-title text-base text-center font-semibold">Ek Tha Tiger</h2>
-                        <h2 class="card-title text-xs mt-2 text-center">Released on <span class="font-bold">2010</span>
-                        </h2>
+            <div id="tt2231253" class="movieCard w-52 h-full">
+                <div 
+                    class="card bg-base-100 h-full shadow-xl cursor-pointer hover:scale-95 transition duration-500 flex flex-col justify-between">
+                    <figure class="h-[70%]"><img class="min-h-full"
+                            src="https://m.media-amazon.com/images/M/MV5BMjAyNjkyOTgzNF5BMl5BanBnXkFtZTgwMTk0MDc2MzE@._V1_SX300.jpg"
+                            alt="movie"></figure>
+                    <div class="card-body my-6">
+                        <h2 class="card-title w-fit mx-auto text-base text-center font-semibold">Wild Card</h2>
+                        <h2 class="text-xs mt-2 text-center">Released on <span class="font-bold">2015</span></h2>
                     </div>
                 </div>
             </div>
-
-
-
-
-
 
 
         </div>
@@ -95,11 +146,13 @@
         <div id="loading" class="w-fit mx-auto my-3 hidden">
             <span class="loading loading-dots loading-lg"></span>
         </div>
-
-        <div class="join grid grid-cols-2 w-fit mx-auto mt-8">
-            <button class="join-item btn btn-outline">Previous page</button>
-            <button class="join-item btn btn-outline">Next</button>
+        <div id="pagination" class="hidden">
+            <div class="join grid grid-cols-2 w-fit mx-auto mt-8">
+                <button id="prevBtn" class="join-item btn btn-outline">Previous page</button>
+                <button id="nextBtn" class="join-item btn btn-outline">Next page</button>
+            </div>
         </div>
+
 
 
     </div>
