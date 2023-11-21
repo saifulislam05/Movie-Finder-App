@@ -1,3 +1,4 @@
+// DOM elements
 const searchInput = document.getElementById("searchInput");
 const errorMessage = document.getElementById("errorMessage");
 const moviesWrapper = document.getElementById("movies_wrapper");
@@ -8,15 +9,18 @@ const pagination = document.getElementById("pagination");
 const detailsModal = document.getElementById("detailsModal");
 const modalData = document.getElementById("modalData");
 
+// State variables
 let inputText = "";
 let page = 1;
 let timeoutId;
 
+// Event listeners
 searchInput.addEventListener("input", handleSearchInput);
 prevBtn.addEventListener("click", handlePrevButtonClick);
 nextBtn.addEventListener("click", handleNextButtonClick);
 moviesWrapper.addEventListener("click", handleMovieCardClick);
 
+// Fetch movies function
 const fetchMovies = async () => {
   inputText = searchInput.value;
 
@@ -45,43 +49,48 @@ const fetchMovies = async () => {
   }
 };
 
-function handleSearchInput (e) {
+// Input handler
+function handleSearchInput(e) {
   e.preventDefault();
-    
+
   clearTimeout(timeoutId);
   timeoutId = setTimeout(() => {
     fetchMovies();
   }, 1000);
 
-    if (!e.target.value) {
+  if (!e.target.value) {
     clearTimeout(timeoutId);
     hideErrorMessage();
   }
-};
+}
 
-function handlePrevButtonClick(e){
+// Previous button click handler
+function handlePrevButtonClick(e) {
   e.preventDefault();
   page--;
   clearMoviesWrapper();
   fetchMovies();
-};
+}
 
-function handleNextButtonClick (e){
+// Next button click handler
+function handleNextButtonClick(e) {
   e.preventDefault();
   page++;
   clearMoviesWrapper();
   fetchMovies();
-};
+}
 
-function handleMovieCardClick (event){
+// Movie card click handler
+function handleMovieCardClick(event) {
   const clickedCard = event.target.closest(".movieCard");
   if (clickedCard) {
     const id = clickedCard.id;
     fetchMovieDetails(id);
   }
-};
+}
 
-async function fetchMovieDetails(id){
+// Fetch movie details function
+async function fetchMovieDetails(id) {
   try {
     const url = `https://www.omdbapi.com/?&apikey=${API_KEY}&i=${id}`;
     const response = await fetch(url);
@@ -95,8 +104,9 @@ async function fetchMovieDetails(id){
   } catch (error) {
     console.error(error);
   }
-};
+}
 
+// Show movie details function
 const showDetails = (data) => {
   const {
     Poster,
@@ -150,7 +160,7 @@ const showDetails = (data) => {
     </div>`;
   detailsModal.showModal();
 };
-
+// Loading indicator functions
 const showLoadingIndicator = () => {
   loadingIndicator.classList.remove("hidden");
 };
@@ -159,6 +169,7 @@ const hideLoadingIndicator = () => {
   loadingIndicator.classList.add("hidden");
 };
 
+// Pagination and button state functions
 const updatePaginationVisibility = (totalResults) => {
   pagination.classList.toggle("hidden", totalResults <= 10);
 };
@@ -169,6 +180,7 @@ const updatePrevButtonState = () => {
     : prevBtn.removeAttribute("disabled");
 };
 
+// Error handling functions
 const handleError = (err) => {
   console.error(err);
   errorMessage.textContent = "Something went wrong. Please try again later!";
@@ -179,10 +191,12 @@ const hideErrorMessage = () => {
   errorMessage.classList.add("hidden");
 };
 
+// Clear movies wrapper function
 const clearMoviesWrapper = () => {
   moviesWrapper.innerHTML = "";
 };
 
+// Handle movies results function
 const handleMoviesResults = (results) => {
   if (results === undefined) {
     errorMessage.textContent = "No Movies Found!";
@@ -193,7 +207,7 @@ const handleMoviesResults = (results) => {
     displayMovies(results);
   }
 };
-
+// Display movies function
 const displayMovies = (data) => {
   const fragment = new DocumentFragment();
   data.forEach((item) => {
@@ -204,7 +218,7 @@ const displayMovies = (data) => {
   clearMoviesWrapper();
   moviesWrapper.appendChild(fragment);
 };
-
+// Create movie card function
 const createMovieCard = (item) => {
   const movieCard = document.createElement("div");
   movieCard.classList.add("movieCard", "w-52", "h-full");
