@@ -2,6 +2,9 @@
 
 This is a simple web application that allows users to search for movies using the OMDB API and view details about each movie.
 
+## Demo
+
+View live [Movie Finder App](https://movie-finder-app-bysaiful.netlify.app/)
 ## Features
 
 - **Search:** Search for movies by title.
