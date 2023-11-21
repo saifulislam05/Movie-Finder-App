@@ -9,6 +9,7 @@ const pagination = document.getElementById("pagination");
 const detailsModal = document.getElementById("detailsModal");
 const modalData = document.getElementById("modalData");
 
+const API_KEY = "b9518d7a";
 // State variables
 let inputText = "";
 let page = 1;

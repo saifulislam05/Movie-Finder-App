@@ -21,3 +21,7 @@ This is a simple web application that allows users to search for movies using th
 - Press Enter or wait for a moment to see the search results.
 - Click on a movie card to view more details.
 - Use the pagination buttons to navigate between pages of search results.
+- Toggle between light and dark themes using the theme controller in the header.
+
+## Theme Mode
+- The app supports both light and dark themes. You can switch between themes using the theme controller in the header.
